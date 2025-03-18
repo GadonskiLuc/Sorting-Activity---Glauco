@@ -2,6 +2,7 @@
 from .strategy import SortStrategy
 
 import time
+import logging
 class BubbleSort(SortStrategy):
     def sort(self, data):
         trocas = 0
@@ -22,9 +23,9 @@ class BubbleSort(SortStrategy):
         end = time.time()
         runtime = (end - start) * 1000
 
-        print("\nBubble Sort")
-        print(f"Runtime: {runtime:.2f} ms")
-        print(f"Trocas: {trocas}")
-        print(f"Comparações: {comparacoes}")
+        logging.info(" Bubble Sort")
+        logging.info(f" Runtime: {runtime:.2f} ms")
+        logging.info(f" Trocas: {trocas}")
+        logging.info(f" Comparações: {comparacoes} \n")
 
         return data
