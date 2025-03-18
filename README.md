@@ -65,10 +65,9 @@ O código segue o **Padrão de Projeto Strategy**, permitindo a substituição d
 Os algoritmos foram avaliados com três conjuntos de dados de tamanhos diferentes:
 
 - 1.000 elementos;
-- 5.000 elementos;
 - 10.000 elementos.
 
-Os tempos de execução foram medidos utilizando `time.perf_counter()` e representados graficamente.
+Os tempos de execução foram medidos utilizando `time.time()` e representados graficamente.
 
 ### 5.2 Resultados Obtidos
 
