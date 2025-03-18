@@ -1,8 +1,21 @@
 # main.py
 import json
+import logging
+import time
+
 from scripts.bubble_sort import BubbleSort
 from scripts.quick_sort import QuickSort
 from scripts.heap_sort import HeapSort
+
+def running_time(name, func, data):
+    start = time.time()
+    result = func(data)
+    end = time.time()
+
+    running_time = (end - start) * 1000
+    logging.info(f"{name}: Tempo de execução: {running_time:.2f} ms")
+
+    return result
 
 # Carregar os dados do arquivo JSON(mude o nome do arquivo que sera analisado)
 with open("./data/dados_1000.json", "r") as file:
