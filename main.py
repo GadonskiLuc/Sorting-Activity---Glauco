@@ -7,15 +7,16 @@ from scripts.bubble_sort import BubbleSort
 from scripts.quick_sort import QuickSort
 from scripts.heap_sort import HeapSort
 
-def running_time(name, func, data):
+def getRuntime(name, data, func): # TODO: Extrar para uma classe externa
     start = time.time()
-    result = func(data)
+
+    data = func(data)
+
     end = time.time()
+    tempo_execucao = (end - start) * 1000
 
-    running_time = (end - start) * 1000
-    logging.info(f"{name}: Tempo de execução: {running_time:.2f} ms")
-
-    return result
+    print(f"{name} finalizado em {tempo_execucao:.2f} ms")
+    return data
 
 # Carregar os dados do arquivo JSON(mude o nome do arquivo que sera analisado)
 with open("./data/dados_1000.json", "r") as file:
@@ -30,11 +31,11 @@ data2 = numbers.copy()
 data3 = numbers.copy()
 
 # Aplicar os algoritmos
-sorted_bubble = bubble_sort.sort(data1)
-sorted_quick = quick_sort.sort(data2)
-sorted_heap = heap_sort.sort(data3)
+sorted_bubble = getRuntime("Bubble sort", data1, bubble_sort.sort)
+sorted_quick = getRuntime("Quick Sort", data2, quick_sort.sort)
+sorted_heap = getRuntime("Heap", data3, heap_sort.sort)
 
 # Exibir os resultados (apenas os primeiros 10 valores para visualização)
-print("Bubble Sort:", sorted_bubble[:10])
-print("Quick Sort:", sorted_quick[:10])
-print("Heap Sort:", sorted_heap[:10])
+print("\nBubble Sort:", sorted_bubble[:10])
+print("\nQuick Sort:", sorted_quick[:10])
+print("\nHeap Sort:", sorted_heap[:10])

@@ -1,6 +1,8 @@
 # algorithms/bubble_sort.py
 from .strategy import SortStrategy
 
+import time
+
 class BubbleSort(SortStrategy):
     def sort(self, data):
         n = len(data)
@@ -8,4 +10,5 @@ class BubbleSort(SortStrategy):
             for j in range(0, n - i - 1):
                 if data[j] > data[j + 1]:
                     data[j], data[j + 1] = data[j + 1], data[j]  # Troca os elementos
+
         return data

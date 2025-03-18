@@ -1,6 +1,8 @@
 # algorithms/heap_sort.py
 from .strategy import SortStrategy
 
+import time
+
 class HeapSort(SortStrategy):
     def heapify(self, data, n, i):
         largest = i
@@ -16,10 +18,12 @@ class HeapSort(SortStrategy):
             self.heapify(data, n, largest)
 
     def sort(self, data):
+
         n = len(data)
         for i in range(n // 2 - 1, -1, -1):
             self.heapify(data, n, i)
         for i in range(n - 1, 0, -1):
             data[i], data[0] = data[0], data[i]
             self.heapify(data, i, 0)
+
         return data
