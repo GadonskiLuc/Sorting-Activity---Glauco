@@ -18,12 +18,36 @@ class HeapSort(SortStrategy):
             self.heapify(data, n, largest)
 
     def sort(self, data):
+        trocas = 0
+        comparacoes = 0
+        
+        start = time.time()
 
         n = len(data)
         for i in range(n // 2 - 1, -1, -1):
+            result = self.heapify(data, n, i)
             self.heapify(data, n, i)
+
+            if result:
+                c, t = result
+                comparacoes += c
+                trocas += t
         for i in range(n - 1, 0, -1):
             data[i], data[0] = data[0], data[i]
-            self.heapify(data, i, 0)
+            trocas += 1
+            result = self.heapify(data, i, 0)
+
+            if result:
+                c, t = result
+                comparacoes += c
+                trocas += t
+
+        end = time.time()
+        runtime = (end - start) * 1000
+
+        print("\nHeap Sort")
+        print(f"Runtime: {runtime:.2f} ms")
+        print(f"Trocas: {trocas}")
+        print(f"Comparações: {comparacoes}")
 
         return data

@@ -31,11 +31,11 @@ data2 = numbers.copy()
 data3 = numbers.copy()
 
 # Aplicar os algoritmos
-sorted_bubble = getRuntime("Bubble sort", data1, bubble_sort.sort)
+sorted_bubble = bubble_sort.sort(data1)
 sorted_quick = getRuntime("Quick Sort", data2, quick_sort.sort)
 sorted_heap = getRuntime("Heap", data3, heap_sort.sort)
 
 # Exibir os resultados (apenas os primeiros 10 valores para visualização)
 print("\nBubble Sort:", sorted_bubble[:10])
-print("\nQuick Sort:", sorted_quick[:10])
-print("\nHeap Sort:", sorted_heap[:10])
+print("Quick Sort:", sorted_quick[:10])
+print("Heap Sort:", sorted_heap[:10])
