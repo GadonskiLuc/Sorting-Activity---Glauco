@@ -1,6 +1,6 @@
 # Sorting Activity
 
-# Membros da Equipe
+### Membros da Equipe
 
 Por Anna Loz, Lucas Gadonski, Matheus Lofy, Pablo Lopes e Sabine Freiman.
 
