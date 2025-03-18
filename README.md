@@ -1,8 +1,8 @@
+# Sorting Activity
+
 # Membros da Equipe
 
 Por Anna Loz, Lucas Gadonski, Matheus Lofy, Pablo Lopes e Sabine Freiman.
-
-# Sorting Activity
 
 ## 1. Objetivo do Código
 
