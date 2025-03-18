@@ -86,15 +86,15 @@ Para melhor compreensão do comportamento dos algoritmos e identificação de po
 
 ### 6.1 Instrumentação dos Algoritmos
 
-Cada algoritmo foi instrumentado para registrar seus tempos de execução utilizando o [**Jaeger**](https://github.com/jaegertracing/jaeger-client-python), permitindo rastreamento distribuído detalhado das operações.
+Cada algoritmo foi instrumentado para registrar tempos de execução e métricas detalhadas sobre seu desempenho, utilizando o [**Jaeger**](https://github.com/jaegertracing/jaeger-client-python). Isso permite o rastreamento distribuído e a coleta de dados essenciais para a avaliação dos KPIs de desempenho, como tempo de execução, número de comparações realizadas e uso de recursos. A instrumentação também oferece uma visão aprofundada de como cada algoritmo se comporta, destacando aspectos como a quantidade de comparações feitas, a eficiência em cada operação e as variações de desempenho entre diferentes execuções.
 
 ### 6.2 Ferramentas de Visualização
 
-Os logs são coletados e analisados em ferramentas open-source como:
+Os logs gerados durante a execução dos algoritmos são coletados e analisados em ferramentas open-source, permitindo o monitoramento e a visualização detalhada dos KPIs de desempenho, como:
 
-- **Jaeger**: Para rastreamento distribuído dos tempos de execução;
-- **Prometheus + Grafana**: Para métricas e visualização gráfica;
-- **Elasticsearch + Kibana**: Para análise detalhada dos logs.
+- **Jaeger**: Para rastreamento distribuído e visualização dos tempos de execução de cada operação, facilitando a análise do tempo gasto por cada algoritmo em cada etapa;
+- **Prometheus + Grafana**: Para coleta de métricas como tempo de execução, número de comparações e utilização de recursos, apresentando gráficos que permitem comparar o comportamento de diferentes algoritmos e identificar gargalos;
+- **Elasticsearch + Kibana**: Para análise detalhada dos logs, possibilitando a consulta e visualização dos dados de execução, o que ajuda a identificar padrões de comportamento, otimizações potenciais e diferenças de desempenho entre os algoritmos.
 
 ## 7. Conclusão
 
