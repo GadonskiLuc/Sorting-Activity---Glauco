@@ -2,6 +2,7 @@
 from .strategy import SortStrategy
 
 import time
+import logging
 
 class HeapSort(SortStrategy):
     def heapify(self, data, n, i):
@@ -45,9 +46,9 @@ class HeapSort(SortStrategy):
         end = time.time()
         runtime = (end - start) * 1000
 
-        print("\nHeap Sort")
-        print(f"Runtime: {runtime:.2f} ms")
-        print(f"Trocas: {trocas}")
-        print(f"Comparações: {comparacoes}")
+        logging.info(" Heap Sort")
+        logging.info(f" Runtime: {runtime:.2f} ms")
+        logging.info(f" Trocas: {trocas}")
+        logging.info(f" Comparações: {comparacoes}")
 
         return data
