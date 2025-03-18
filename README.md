@@ -86,11 +86,7 @@ Para melhor compreensão do comportamento dos algoritmos e identificação de po
 
 ### 6.1 Instrumentação dos Algoritmos
 
-Cada algoritmo foi instrumentado para registrar:
-
-- Tempo de execução total;
-- Número de trocas realizadas;
-- Número de comparações realizadas.
+Cada algoritmo foi instrumentado para registrar seus tempos de execução utilizando o [**Jaeger**](https://github.com/jaegertracing/jaeger-client-python), permitindo rastreamento distribuído detalhado das operações.
 
 ### 6.2 Ferramentas de Visualização
 
