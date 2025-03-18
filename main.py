@@ -6,6 +6,7 @@ import time
 from scripts.bubble_sort import BubbleSort
 from scripts.quick_sort import QuickSort
 from scripts.heap_sort import HeapSort
+logging.basicConfig(level=logging.DEBUG)
 
 def getRuntime(name, data, func): # TODO: Extrar para uma classe externa
     start = time.time()
@@ -15,7 +16,7 @@ def getRuntime(name, data, func): # TODO: Extrar para uma classe externa
     end = time.time()
     tempo_execucao = (end - start) * 1000
 
-    print(f"{name} finalizado em {tempo_execucao:.2f} ms")
+    logging.info(f"Algoritmo: {name}, Tempo de execucao:{tempo_execucao:.2f}")
     return data
 
 # Carregar os dados do arquivo JSON(mude o nome do arquivo que sera analisado)
