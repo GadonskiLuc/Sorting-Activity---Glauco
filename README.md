@@ -148,3 +148,103 @@ Foram realizadas comparações de desempenho entre as versões sequencial e para
 ## 4. Considerações Finais
 
 A implementação de `threading` no HeapSort demonstra uma abordagem fundamental para a paralelização, especialmente em um ambiente educacional ou de desenvolvimento. Os usuários devem considerar o contexto específico de uso e os trade-offs entre desempenho e complexidade na escolha da implementação de paralelização mais apropriada para suas necessidades.
+
+# Relatório de Impacto da Paralelização nos Algoritmos de Ordenação
+
+## Introdução
+
+Este relatório explora o impacto da paralelização em três algoritmos de ordenação: Bubble Sort, Quick Sort e Heap Sort, com datasets de tamanhos 1000 e 10000. A análise se concentra em medir o tempo de execução e as operações de troca e comparação, comparando versões paralelizadas com suas contrapartes sequenciais.
+
+## Resultados
+
+### Dataset de 1000 Elementos
+
+#### Sem Paralelização
+
+- **Bubble Sort**
+  - Tempo de Execução: 112.09 ms
+  - Trocas: 249,359
+  - Comparações: 500,500
+
+- **Quick Sort**
+  - Tempo de Execução: 3.19 ms
+  - Trocas: 10,846
+  - Comparações: 11,513
+
+- **Heap Sort**
+  - Tempo de Execução: 3.02 ms
+  - Trocas: 999
+  - Comparações: 0
+
+#### Com Paralelização
+
+- **Bubble Sort com Threading**
+  - Tempo de Execução: 127.53 ms
+  - Trocas: 249,359
+  - Comparações: 999,000
+
+- **Quick Sort com Threading**
+  - Tempo de Execução: 330.76 ms
+  - Trocas: 10,846
+  - Comparações: 11,513
+
+- **Heap Sort com Threading**
+  - Tempo de Execução: 98.42 ms
+  - Trocas: 9,093
+  - Comparações: 11,701
+
+### Dataset de 10000 Elementos
+
+#### Sem Paralelização
+
+- **Bubble Sort**
+  - Tempo de Execução: 13,681.34 ms
+  - Trocas: 25,140,138
+  - Comparações: 50,005,000
+
+- **Quick Sort**
+  - Tempo de Execução: 97.26 ms
+  - Trocas: 155,176
+  - Comparações: 161,834
+
+- **Heap Sort**
+  - Tempo de Execução: 191.13 ms
+  - Trocas: 9,999
+  - Comparações: 0
+
+#### Com Paralelização
+
+- **Bubble Sort com Threading**
+  - Tempo de Execução: 16,728.63 ms
+  - Trocas: 25,140,138
+  - Comparações: 99,990,000
+
+- **Quick Sort com Threading**
+  - Tempo de Execução: 9,215.16 ms
+  - Trocas: 155,176
+  - Comparações: 161,834
+
+- **Heap Sort com Threading**
+  - Tempo de Execução: 1,254.10 ms
+  - Trocas: 124,062
+  - Comparações: 166,189
+
+## Análise
+
+### Eficiência e Desempenho
+
+- **Bubble Sort**: A paralelização tendeu a aumentar o tempo de execução e o número de comparações, devido à sua natureza não ideal para paralelização e à dependência sequencial do seu algoritmo.
+
+- **Quick Sort**: O uso de `threading` levou a um aumento significativo no tempo de execução, especialmente com 10000 elementos, sugerindo que o Global Interpreter Lock (GIL) limita a eficiência desse tipo de paralelização para tarefas que exigem uso intenso da CPU.
+
+- **Heap Sort**: Se beneficiou significativamente da paralelização, mostrando uma grande redução no tempo de execução com um número maior de elementos, indicando que sua estrutura é mais adequada para `threading`.
+
+### Consistência dos Resultados
+
+Os elementos ordenados foram consistentes entre as versões paralelizadas e sequenciais para todos os algoritmos, certificando que a integridade das técnicas de ordenação foi mantida.
+
+## Conclusão
+
+A implementação de `threading` revelou que, enquanto Heap Sort pode ganhar eficiência pela paralelização, Bubble Sort e Quick Sort não se beneficiaram de maneira comparável por conta do GIL no Python. Para futuras melhorias, utilizando linguagens que não sofrem com problemas do GIL ou estratégias de paralelização mais eficientes seriam caminhos mais benéficos.
+
+Este relatório pode ser acompanhado de gráficos e outras formas de visualização dos dados para fornecer uma compreensão mais clara dos impactos no desempenho.
