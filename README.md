@@ -98,3 +98,53 @@ Os logs gerados durante a execução dos algoritmos são coletados e analisados 
 ## 7. Conclusão
 
 A análise confirmou que **Quick Sort** foi o mais eficiente na maioria dos casos, seguido pelo **Heap Sort**. O uso de algoritmos com complexidade **O(n log n)** é recomendado para grandes volumes de dados, enquanto algoritmos quadráticos como o **Bubble Sort** se tornam impraticáveis.
+
+# Documentação do HeapSort com Threading
+
+## 1. Introdução
+
+Esta documentação descreve as alterações feitas no algoritmo HeapSort para implementar a paralelização usando a biblioteca `threading` em Python. A implementação tem como objetivo demonstrar como a paralelização pode ser aplicada para otimizar a construção do heap no algoritmo.
+
+## 2. Modificações no Código
+
+### Classe `HeapSort` com Threading
+
+- **`self.lock` para Threadsafety**: Introduzimos um objeto de bloqueio (`threading.Lock`) para assegurar que modificações nas variáveis compartilhadas (`trocas` e `comparacoes`) sejam feitas de maneira segura, evitando race conditions durante a execução de múltiplas threads.
+
+- **Método `heapify`**:
+  - Adaptação para o uso de `lock` ao acessar e modificar `trocas` e `comparacoes`.
+  - Mantém a lógica principal do HeapSort, que é reorganizar o array em um heap.
+
+- **Paralelização com `threading`**:
+  - Criação de threads para chamar o método `heapify` durante a fase de construção do heap. Cada subárvore principal é processada em uma thread separada.
+  - Uso do método `join()` para garantir que o processo principal aguarde a conclusão de todas as threads.
+
+### Desempenho
+
+- **Fase de Construção do Heap**: Utiliza threads para otimizar a fase de construção inicial do heap, onde cada subárvore pode ser processada simultaneamente.
+- **Fase de Saída (Heap Sort Sequence)**: Permanece sequencial devido à necessidade de acesso ordenado e em sequência ao heap construído.
+
+## 3. Comparação de Desempenho
+
+Foram realizadas comparações de desempenho entre as versões sequencial e paralelizada do HeapSort para avaliar o impacto da paralelização.
+
+### Metodologia
+
+- Ambos os algoritmos foram executados em datasets de diferentes tamanhos sob as mesmas condições de hardware e software.
+- O tempo de execução (em milissegundos), número de trocas e comparações foram registrados.
+
+### Resultados Esperados
+
+- **Versão Sequencial**: Fornece um baseline de desempenho sem overhead de criação e gerenciamento de threads.
+  
+- **Versão Paralelizada**:
+  - **Vantagens**: Potencialmente reduzido o tempo de construção do heap em casos onde as árvores são grandes o suficiente para justificar o overhead de criação de threads.
+  - **Desvantagens**: O `threading` em Python, devido ao Global Interpreter Lock (GIL), pode não apresentar vantagens de desempenho significativas para tarefas CPU-bounded.
+
+### Observações
+
+- Para tamanhos menores de arrays, o overhead de gerenciamento de threads pode superar os ganhos, tornando a versão sequencial mais rápida em prática.
+
+## 4. Considerações Finais
+
+A implementação de `threading` no HeapSort demonstra uma abordagem fundamental para a paralelização, especialmente em um ambiente educacional ou de desenvolvimento. Os usuários devem considerar o contexto específico de uso e os trade-offs entre desempenho e complexidade na escolha da implementação de paralelização mais apropriada para suas necessidades.
